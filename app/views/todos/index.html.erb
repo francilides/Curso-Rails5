@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Todos</h1>
+
+<h2>Bienvenido <%= current_user.email %> </h2>
+<%= link_to "Salir", destroy_user_session_path, :method=>:delete %>
+
+<div class="new-list">
+  <%= link_to new_todo_path, :remote=>true do%>
+    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+  <%end%>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+      <ul class="tecno-list">
+          <% @todos.each do |todo| %>
+              <li>
+                <time datetime="2014-07-20">
+                  <span class="day"> <%= todo.created_at.mday %> </span>
+                  <span class="month"><%= todo.created_at.strftime("%B").first(3) %></span>
+                  <span class="year"><%= todo.created_at.year %></span>
+                  <span class="time">ALL DAY</span>
+                </time>
+                <div class="info">
+                  <h2 class="title"><%= todo.title %></h2>
+                </div>
+                <div class="social">
+                  <ul>
+                    <li class="eye" style="width:33%;">
+                      <%= link_to todo do %>
+                        <span class="fa fa-eye"></span>
+                      <%end%>
+                    </li>
+
+                    <li class="pencil" style="width:34%;">
+                      <%= link_to edit_todo_path(todo) do%>
+                        <span class="fa fa-pencil-square-o"></span>
+                      <%end%>
+                    </li>
+                    <li class="times" style="width:33%;">
+                    <%= link_to todo, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                      <span class="fa fa-times"></span>
+                    <%end%>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="new-todo" style="display:none;"></div>
