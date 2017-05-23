@@ -16,6 +16,7 @@ class TodosController < ApplicationController
   # GET /todos/new
   def new
     @todo = Todo.new
+    1.times {@todo.comments.build}
     respond_to do |f|
       f.js
     end
@@ -73,6 +74,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:title)
+      params.require(:todo).permit(:title, comments_attributes: [:id, :comment])
     end
 end
