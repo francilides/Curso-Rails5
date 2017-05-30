@@ -28,13 +28,13 @@
                 <div class="social">
                   <ul>
                     <li class="eye" style="width:33%;">
-                      <%= link_to todo do %>
+                      <%= link_to todo, :remote=>true do %>
                         <span class="fa fa-eye"></span>
                       <%end%>
                     </li>
 
                     <li class="pencil" style="width:34%;">
-                      <%= link_to edit_todo_path(todo) do%>
+                      <%= link_to edit_todo_path(todo), :remote=>true do%>
                         <span class="fa fa-pencil-square-o"></span>
                       <%end%>
                     </li>

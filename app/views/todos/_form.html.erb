@@ -16,6 +16,20 @@
     <%= f.text_field :title %>
   </div>
 
+  <div id="comments">
+  <div class='comments-fields'>
+    <%= f.fields_for :comments do |comment| %>
+      <%= render 'comment_fields', f: comment %>
+    <% end %>
+  </div>
+  <div class='links'>
+    <%= link_to_add_association '+', f, :comments,
+    'data-association-insertion-node' =>  '.comments-fields',
+    'data-association-insertion-method' => 'append', :class => 'col-xs-1',
+    partial: 'comment_fields' %>
+  </div>
+</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
